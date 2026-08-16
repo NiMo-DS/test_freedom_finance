@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  streamlit-app:
+    build: .
+    container_name: freedom_finance_app
+    ports:
+      # Если порт 8501 на ПК занят, проверяющий может передать другой в консоли: PORT=8502 docker compose up
+      - "${PORT:-8501}:8501"
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    restart: unless-stopped
